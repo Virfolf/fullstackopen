@@ -40,16 +40,16 @@ const Statistics = (props) => {
 const StatisticsLine = (props) => {
   if (props.allClicksLength === 0) {
     return (
-      <p>
-        No feedback given
-      </p>
+      <tr>
+        <td>No feedback given</td>
+      </tr>
     )
   }
   return (
-    <p>
-       {props.name} {props.value}
-      <br/>
-    </p>
+    <tr>
+      <td>{props.name}</td>
+      <td>{props.value}</td>
+    </tr>
   )
 }
 
@@ -92,11 +92,15 @@ const App = () => {
       <Button handleClick={handleBadClick} text="Bad"/>
       <Header text="statistics"/>
       {/*<Statistics allClicks={[good, neutral, bad, allClicks]}/>*/}
-      <StatisticsLine name="Good" value={good} allClicksLength={allClicks.length}/>
-      <StatisticsLine name="Neutral" value={neutral} allClicksLength={allClicks.length}/>
-      <StatisticsLine name="Bad" value={bad} allClicksLength={allClicks.length}/>
-      <StatisticsLine name="Average" value={ComputeAverage()} allClicksLength={allClicks.length}/>
-      <StatisticsLine name="Positive"  value={ComputePositive() +"%"} allClicksLength={allClicks.length}/>
+      <table>
+        <tbody>
+          <StatisticsLine name="Good" value={good} allClicksLength={allClicks.length}/>
+          <StatisticsLine name="Neutral" value={neutral} allClicksLength={allClicks.length}/>
+          <StatisticsLine name="Bad" value={bad} allClicksLength={allClicks.length}/>
+          <StatisticsLine name="Average" value={ComputeAverage()} allClicksLength={allClicks.length}/>
+          <StatisticsLine name="Positive"  value={ComputePositive() +"%"} allClicksLength={allClicks.length}/>
+        </tbody>
+      </table>
     </div>
   )
 }
