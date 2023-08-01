@@ -5,7 +5,6 @@ const Header = (props) => {
 }
 
 const Content = (props) => {
-  console.log(props)
   const results = []
   return (  
     <div>
@@ -18,7 +17,6 @@ const Content = (props) => {
       )}
       {results}
     </div>
-
   )
 }
 
