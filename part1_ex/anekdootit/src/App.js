@@ -56,7 +56,7 @@ const App = () => {
       newVotes[selected] = newVotes[selected] + 1
     }
     setVotes(newVotes)
-    if (newVotes[selected] > popular) {
+    if (newVotes[selected] > votes[popular]) {
       setPopular(selected)
     }
   }
