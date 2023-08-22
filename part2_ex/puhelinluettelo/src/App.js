@@ -2,13 +2,16 @@ import { useState, useEffect } from 'react'
 import Person from './components/Person'
 import Form from './components/Form'
 import Filter from './components/Filter'
+import Notification from './components/Notification'
 import personService from './services/persons'
+import './index.css'
 
 const App = () => {
   const [persons, setPersons] = useState([]) 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
+  const [actionMessage, setActionMessage] = useState(null)
 
   useEffect(() => {
     personService
@@ -32,10 +35,23 @@ const App = () => {
           setPersons(persons.concat(returnedPerson))
           setNewName('')
           setNewNumber('')
+          setActionMessage(
+            `Added ${returnedPerson.name}`
+          )
+          setTimeout(() => {
+            setActionMessage(null)
+          }, 2000)
       })
+      
     }
     else {
-      alert(`${newName} is already added to phonebook, updating number`)
+      alert()
+      setActionMessage(
+        `${newName} is already added to phonebook, updating number`
+      )
+      setTimeout(() => {
+        setActionMessage(null)
+      }, 2000)
       updatePerson(persons.find((person) => person.name === newName).id)
       setNewName('')
       setNewNumber('')
@@ -97,6 +113,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+        <Notification message={actionMessage} />
         <Filter filter={filter} handleFilterChange={handleFilterChange}/>
       <h2>Add a new</h2>
         <Form 
